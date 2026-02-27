@@ -13,28 +13,40 @@
   --head:#1f3d7a;
 }
 *{box-sizing:border-box;}
-html,body{margin:0;padding:0;height:100%;}
+html,body{margin:0;padding:0;} /* height:100% を削除 */
+
+/* 背景は html に付ける（余白に見える部分を抑える） */
+html{
+  background:linear-gradient(180deg,var(--bg),#070b14);
+}
 body{
   font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Noto Sans JP",sans-serif;
-  background:linear-gradient(180deg,var(--bg),#070b14);
   color:var(--text);
+  background:transparent;          /* bodyの背景を消す */
+  min-height:0;                    /* 余計な伸びを抑える */
 }
+
+/* 下の余白が出ないよう、wrapの下padding/marginをゼロ固定 */
 .wrap{
   max-width:1100px;
-  margin:28px auto 0;
-  padding:0 16px 0; /* 下のpaddingをゼロ */
+  margin:24px auto 0;              /* 上余白だけ（必要なら 0 に） */
+  padding:0 16px;                  /* 下paddingゼロ */
 }
+
 h1{font-size:22px;margin:0 0 10px;}
 .subtitle{color:var(--muted);font-size:14px;line-height:1.6;margin:0;}
 .subtitle-divider{height:4px;background:rgba(0,0,0,.7);margin:16px 0;}
+
 .card{
   background:rgba(15,26,51,.95);
   border:2px solid rgba(0,0,0,.7);
   border-radius:14px;
   overflow:hidden;
-  margin:0; /* 下余白ゼロ */
+  margin:0;                        /* 下余白ゼロ */
 }
-table{width:100%;border-collapse:collapse;}
+
+/* tableの下に謎の隙間が出るのを防ぐ */
+table{width:100%;border-collapse:collapse;margin:0;}
 thead th{
   background:var(--head);
   color:#fff;
